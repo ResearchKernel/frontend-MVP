@@ -7,6 +7,7 @@ const Sidebar = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 200px;
+  min-width: 200px;
   height: 100%;
   background: #fff;
   box-shadow: 0px 4px 6px rgba(57, 73, 76, 0.35);
