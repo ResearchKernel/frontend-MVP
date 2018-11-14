@@ -1,6 +1,4 @@
 
-![AppVeyor](https://img.shields.io/appveyor/ci/ResearchKernel/frontend.svg)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
