@@ -19,12 +19,15 @@ const Content = styled.div`
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: calc(100% - 64px);
+  height: calc(100% - 65px);
+  overflow: hidden;
+  margin-top: 1px;
 `;
 
 const MainView = styled.div`
-  /* display: flex; */
-  /* flex-flow: row nowrap; */
+  padding: 1rem;
+  width: calc(100% - 200px);
+  overflow-y: scroll;
 `;
 
 class AppComponent extends Component {
