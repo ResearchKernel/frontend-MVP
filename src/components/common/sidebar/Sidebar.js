@@ -10,8 +10,8 @@ const Sidebar = styled.div`
   min-width: 200px;
   height: 100%;
   background: #fff;
-  box-shadow: 0px 4px 6px rgba(57, 73, 76, 0.35);
-  /* border-top: 1px solid #ededed; */
+  /* box-shadow: 0px 4px 6px rgba(57, 73, 76, 0.35); */
+  border-right: 1px solid #ededed;
 `;
 
 const SidebarItem = styled(Link)`
