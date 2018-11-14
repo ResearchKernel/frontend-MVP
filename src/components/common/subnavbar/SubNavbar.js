@@ -6,23 +6,14 @@ const Navbar = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  height: 64px;
+  height: 32px;
   background: #fff;
+  box-shadow: 0 4px -2px rgba(57, 73, 76, 0.35);
   border-bottom: 1px solid #ededed;
-  /* box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35); */
 `;
 
 const NavbarLinks = styled.div`
   display: inherit;
-`;
-
-const NavbarLogo = styled.div`
-  width: 180px;
-  height: 100%;
-  line-height: 64px;
-  font-size: 18px;
-  text-align: center;
-  cursor: pointer;
 `;
 
 const StyledLink = styled(Link)`
@@ -40,14 +31,9 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const NavbarComponent = () => {
+const SubNavbarComponent = () => {
   return (
     <Navbar>
-      <NavbarLogo>
-        <StyledLink as={Link} to="/">
-          ResearchKernel
-        </StyledLink>
-      </NavbarLogo>
       <NavbarLinks>
         <StyledLink as={Link} to="/community">
           Community
@@ -72,4 +58,4 @@ const NavbarComponent = () => {
   );
 };
 
-export default NavbarComponent;
+export default SubNavbarComponent;
