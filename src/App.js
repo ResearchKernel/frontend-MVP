@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Login from "./views/login/Login";
 import Home from "./views/home/Home";
 import Navbar from "./components/common/navbar/Navbar";
+import SubNavbar from "./components/common/subnavbar/SubNavbar";
 import Sidebar from "./components/common/sidebar/Sidebar";
 
 const App = styled.div`
@@ -19,9 +20,9 @@ const Content = styled.div`
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: calc(100% - 65px);
+  height: calc(100% - 96px);
   overflow: hidden;
-  margin-top: 1px;
+  /* margin-top: 1px; */
 `;
 
 const MainView = styled.div`
@@ -35,6 +36,7 @@ class AppComponent extends Component {
     return (
       <App>
         <Navbar />
+        <SubNavbar />
         <Content>
           <Sidebar />
           <MainView>

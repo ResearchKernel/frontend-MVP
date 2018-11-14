@@ -11,7 +11,7 @@ const Sidebar = styled.div`
   height: 100%;
   background: #fff;
   box-shadow: 0px 4px 6px rgba(57, 73, 76, 0.35);
-  border-top: 1px solid #ededed;
+  /* border-top: 1px solid #ededed; */
 `;
 
 const SidebarItem = styled(Link)`
