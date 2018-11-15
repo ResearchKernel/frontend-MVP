@@ -1,0 +1,83 @@
+/* Color palette */
+
+:root {
+  --light-royal-blue: #2d4ef5;
+  --greenish-cyan: #4ce2a7;
+  --pale-red: #e24c4c;
+  --faded-orange: #f1a153;
+  --navy: #022047;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Nunito Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #333333;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+}

@@ -4,15 +4,16 @@ import { isLoggedIn } from "./_actions/auth.action";
 import styled from "styled-components";
 import Login from "./views/login/Login";
 import Home from "./views/home/Home";
-import Navbar from "./components/common/navbar/Navbar";
-import SubNavbar from "./components/common/subnavbar/SubNavbar";
-import Sidebar from "./components/common/sidebar/Sidebar";
+import Navbar from "./components/common/navbar/navbar.component";
+import SubNavbar from "./components/common/sub_navbar/sub_navbar.component";
+import Sidebar from "./components/common/sidebar/sidebar.component";
+// import MainComponent from "./views/main/Main";
 
 const App = styled.div`
   max-width: 1366px;
   width: 100%;
   height: 100%;
-  background-color: #f2f2f2;
+  background-color: #fff;
   color: #222;
 `;
 
@@ -22,7 +23,6 @@ const Content = styled.div`
   width: 100%;
   height: calc(100% - 96px);
   overflow: hidden;
-  /* margin-top: 1px; */
 `;
 
 const MainView = styled.div`

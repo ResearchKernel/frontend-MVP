@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { login } from "./../../_actions/auth.action";
 import { connect } from "react-redux";
+import Input from "../../components/common/input/Input.component";
 
 class Login extends Component {
   state = { username: "", password: "" };
 
   setValue = (type, value) => {
-    this.setState({ [type]: value });
+    this.setState({ [type]: value }, () => {
+      console.log(this.state.username);
+    });
   };
 
   handleUsername = e => {
@@ -28,22 +31,19 @@ class Login extends Component {
 
   render() {
     return (
-      <form>
-        <label>Username</label>
-        <input
+      <form autoComplete="false">
+        <Input
           type="text"
           placeholder="Enter Username"
+          label="Username"
           onBlur={this.handleUsername}
         />
-        <label>Password</label>
-        <input
+        <Input
           type="password"
           placeholder="Enter Password"
+          label="Password"
           onBlur={this.handlePassword}
         />
-        <button type="submit" onClick={this.handleSubmit}>
-          Sign In
-        </button>
       </form>
     );
   }
