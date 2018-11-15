@@ -8,6 +8,7 @@ export const Navbar = styled.div`
   height: 64px;
   background: #fff;
   border-bottom: 1px solid #ededed;
+  padding: 0 1rem;
 `;
 
 export const NavbarLinks = styled.div`
