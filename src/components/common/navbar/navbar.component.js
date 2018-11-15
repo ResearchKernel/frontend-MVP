@@ -7,6 +7,7 @@ import {
   NavbarLogo,
   NavbarImg
 } from "./navbar.style";
+import SearchBox from "./../search_box/search_box.component";
 import Logo from "../../../_assets/images/rk-light.png";
 
 const NavbarComponent = () => {
@@ -37,6 +38,7 @@ const NavbarComponent = () => {
           Sign Up
         </StyledLink>
       </NavbarLinks>
+      <SearchBox />
     </Navbar>
   );
 };
