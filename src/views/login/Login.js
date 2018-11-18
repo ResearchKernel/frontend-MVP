@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import { login } from "./../../_actions/auth.action";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Input from "../../components/common/input/Input.component";
+import { Form, Icon, Button, Checkbox, Input } from 'antd';
+import {
+  StyledForm,
+  LoginButton,
+  LoginPage,
+  LoginHeader,
+  RegisterLink
+} from "./login.style";
+
+const FormItem = Form.Item;
 
 class Login extends Component {
   state = { username: "", password: "" };
@@ -31,20 +41,38 @@ class Login extends Component {
 
   render() {
     return (
-      <form autoComplete="false">
-        <Input
-          type="text"
-          placeholder="Enter Username"
-          label="Username"
-          onBlur={this.handleUsername}
-        />
-        <Input
-          type="password"
-          placeholder="Enter Password"
-          label="Password"
-          onBlur={this.handlePassword}
-        />
-      </form>
+      <LoginPage>
+        <StyledForm onSubmit={this.handleSubmit} autoComplete="false">
+          <LoginHeader>Sign-In</LoginHeader>
+          <FormItem>    
+            <Input
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Enter Username"
+              onChange={this.handleUsername}
+              />
+          </FormItem>
+          <FormItem>
+            <Input
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="password"
+              placeholder="Enter Password"
+              onChange={this.handlePassword}
+              />
+          </FormItem>
+                    {/* <FormItem>
+            <Checkbox>Remember me</Checkbox>
+              <Forgot><a href="">Forgot password</a></Forgot>
+          </FormItem> */}
+          <FormItem>
+            <LoginButton type="primary" htmlType="submit">
+              Sign In
+            </LoginButton>
+            <RegisterLink as={Link} to="/sign-up">
+              New to ResearchKernel? Register now!
+            </RegisterLink>
+          </FormItem>
+        </StyledForm>
+      </LoginPage>
     );
   }
 }
