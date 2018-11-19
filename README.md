@@ -104,8 +104,13 @@ Branch | Purpose
 
 1. Select task on Trello 
 2. Inform to your committer and they will assign you the task on Trello  
-3. Create a feature branch from development.
+3. Create a feature branch from development branch.
 4. Push a PR to development.
+
+## Guidelines for Committers 
+
+1. Avoid merge conflicts 
+2. Create Pull Request on each branch rather than directly commiting to the repository, except master branch.
 
 
 
