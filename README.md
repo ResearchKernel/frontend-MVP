@@ -1,3 +1,5 @@
+### Build Status
+[![Build Status](https://travis-ci.org/ResearchKernel/frontend.png)](https://travis-ci.org/ResearchKernel/frontend)
 
 # Research Kernel's Frontend
 
