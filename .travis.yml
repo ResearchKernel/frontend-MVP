@@ -1,7 +1,19 @@
+branches:
+  only:
+    - master
+cache:
+  directories:
+  - node_modules
+script:
+  - yarn install
+  - yarn build
 deploy:
-  provider: s3
-  access_key_id:
-    secure: XiwojA9bm0LxzKE3jT+wh90eHnb4RdKUIEarmUIuzsMskeHuHpF/dWOWzrPQFl0cL29l+9ivaR0iR5ub1WWw99YGHQLNB6Rj6jBzD5jw5ZZqg8QvHOmmKmQqNrwNNwKfTzPTJPUtXAM4Ql1GNmr4hkSzk8BJPmkoZ6dhKTKVPHNZcWMIf87cXz9IUUKx0P4qjaewTgIETPK1GfpZZtasXAUvKsHPP1VNKNkGBRHA5/H4e0DaWRZlK+Q4mLuD4iidIedhgkzEgzgPtWG5cXK4ePGfw17lHqHmRO/v6lroiXugqezmQvS5uLH6g/lcUssZi+1M0MP0YEDKzXCti2VHlxerwkKt/LOCN8tXbUnb0YkxYqSYzBGZt4leYiOSvoArjE0FE6LoSlN0BYJiOVoD9yo+RpkHHmSa1lTWSjv5n5TzlZFPmfjXoMUym4bsTe4phHSBhIncO7LzHpBWF/vDV5lnUgW5/lpl4sOSpFrGZcdvWVG+5byrfZ/AXecBnACbHzigSLs+WYmAtwbSZL07fi7HlSWbnhV1hI8v0pKe0GI/Wc7Wwv/7vlMrNAnwRLTHNz85Z54Xtbdupj8CWdMz85yoPIH1E7/Q0cnIG32IFjZ+gmOmXQJ1E2L62IdrPwwgybIi2ZUDRmyYGayhCJrex3ukTP28D1KSfHxVhpKK2HU=
-  secret_access_key:
-    secure: aYJ+wR7jRqZc4GwnZy6d+0pIX1kDlYIE6AXXlVK0p7LrDVowLt/gIhZQKPXYP1FMnOB6GuFwvOLZTCwq3i5PnAh39BwaWNaWmBBSO7Sge/8HhGWhjAR8uGRIaqbvLnmvvasRQho6dnIfxLS6+9Qvl7mVHPj7Hs+XyKwVjzqhD+c4RPBacRPubi1BN3GcbAK59w3rnkdRgT9fl7ev0/L1lwJqY7XuFaf7OYGJP51ZlPBAl2vrV05xvAwsMffs8wL6b3ndfndkM9WYzv7dD/9xzVvXkArIAn1QUXAPwZTD+umNJApEzas/w6GEMqmvUM2+KV+F/ntIPdVj5DXjQE0+E50ic+3zKRCx62Q6NYFpOT1vTTjpnjK/Doz+I7jncEYJQ5g7oEOKIL63sxkqxn2pmmZ4qrZr1A8N4rGO7KA9RgGnmiG8WTgrjUCJLPvt9Mfo9MTY4ekaHJNtLfJ4VXWMpS+Vc6uxhOLS1t632ooLjBTOHFThpK90OZPGGB/sKlFKYdc/AiBj6VYpFzEWRCi8U3WnashEn9N+I2jJ2Zh8QWdoQ5tGIR7lVurpBJEIECC4t71l6KNa86PNjhde+5YIeH8OmvVfyMWgkgCGeWD8XvP+UI/soAqmwYtYP4FCou6EdeUCcG3hMIDvQGqk5npmPd1M0tia5mesopfq8MaR4rU=
-  bucket: researchkernel.org
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $PROD_BUCKET
+    skip_cleanup: true
+    acl: public_read
+    local_dir: build
+    on:
+      branch: master
