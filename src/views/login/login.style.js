@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Form, Button } from 'antd';
 import { Link } from "react-router-dom";
 
-const FormItem = Form.Item;
-
 export const LoginPage = styled.div`
     margin-left: 35%;
     margin-right: 35%;
