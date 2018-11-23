@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Menu, Layout } from "antd";
 import { menuItemStyle } from "./sidebar.style";
+import category from "../../../_assets/category"
+
 const Sider = Layout.Sider;
 
 class SiderComponent extends React.Component {
@@ -31,69 +34,28 @@ class SiderComponent extends React.Component {
           theme="default"
           mode="inline"
         >
-          <Menu.Item style={menuItemStyle} key="1">
-            Option 1
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="2">
-            Option 2
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="3">
-            Option 3
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="4">
-            Option 4
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="5">
-            Option 5
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="6">
-            Option 6
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="7">
-            Option 7
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="8">
-            Option 8
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="9">
-            Option 9
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="10">
-            Option 10
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="11">
-            Option 11
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="12">
-            Option 12
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="13">
-            Option 13
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="14">
-            Option 14
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="15">
-            Option 15
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="16">
-            Option 16
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="17">
-            Option 17
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="18">
-            Option 18
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="19">
-            Option 19
-          </Menu.Item>
-          <Menu.Item style={menuItemStyle} key="20">
-            Option 20
-          </Menu.Item>
+          {
+            category.map((item,key) => {
+              if(item.type === this.props.subCategory) {
+                return(
+                item.sub.map((sub) => {
+                  return (
+                    <Menu.Item style={menuItemStyle} key={sub.code}>
+                      {sub.name}
+                    </Menu.Item>
+                  )
+                }))
+              }
+            })
+          }
         </Menu>
       </Sider>
     );
   }
 }
-export default SiderComponent;
+
+const mapStateToProps = (state) => {
+  return { subCategory: state.subCategory.data.subCategory }
+};
+
+export default connect(mapStateToProps)(SiderComponent);

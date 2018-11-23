@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { List } from "antd";
 import { SubNavMenu, MenuItem } from "./sub_navbar.style";
+// import { fetchCategory } from "../../../_actions/subNavBar.action";
+import category from "../../../_assets/category";
+import SiderComponent from "../sidebar/sidebar.component";
+import { fetchSubCategory } from "../../../_actions/subNavBar.action";
 
 class SubNavbarComponent extends React.Component {
   state = {
-    current: "physics"
+    current: ""
   };
 
   handleClick = e => {
@@ -13,43 +19,33 @@ class SubNavbarComponent extends React.Component {
     });
   };
 
+  handleSubCategory = (e) => {
+    const payload = e.item.props.children;
+    this.props.fetchSubCategory(payload);
+  };
+
   render() {
     return (
       <SubNavMenu
         onClick={this.handleClick}
+        onSelect={this.handleSubCategory}
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-        <MenuItem key="physics">Physics</MenuItem>
-
-        <MenuItem key="astro-physics">Astro Physics</MenuItem>
-
-        <MenuItem key="computer-science">Computer Science</MenuItem>
-
-        <MenuItem key="mathematics">Mathematics</MenuItem>
-
-        <MenuItem key="quantum-mechanics">Quantum Mechanics</MenuItem>
-
-        <MenuItem key="chemistry">Chemistry</MenuItem>
-
-        <MenuItem key="algorithms">Algorithms</MenuItem>
-
-        <MenuItem key="1physics">Physics</MenuItem>
-
-        <MenuItem key="1astro-physics">Astro Physics</MenuItem>
-
-        <MenuItem key="1computer-science">Computer Science</MenuItem>
-
-        <MenuItem key="1mathematics">Mathematics</MenuItem>
-
-        <MenuItem key="1quantum-mechanics">Quantum Mechanics</MenuItem>
-
-        <MenuItem key="1chemistry">Chemistry</MenuItem>
-
-        <MenuItem key="1algorithms">Algorithms</MenuItem>
+      {
+        category.map((item,key) => <MenuItem key={key}>{item.type}</MenuItem>)
+      }
       </SubNavMenu>
     );
   }
 }
 
-export default SubNavbarComponent;
+const mapStateToProps = (state) => {
+  return { subCategory: state.subCategory }
+};
+
+const mapDispatchToProps = dispatch => ({
+  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubNavbarComponent);
