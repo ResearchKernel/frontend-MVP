@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-import { Skeleton, Switch, List, Avatar, Icon } from "antd";
+import { connect } from "react-redux";
+import { Skeleton, Switch, List, Avatar, Icon, Form, Button } from "antd";
 
-const listData = [];
-for (let i = 0; i < 10; i++) {
-  listData.push({
-    href: "http://ant.design",
-    title: `ant design part ${i}`,
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-    description:
-      "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-    content:
-      "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-  });
-}
-
-const IconText = ({ type, text }) => (
+const IconText = ({ type, text}) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
     {text}
@@ -23,58 +11,64 @@ const IconText = ({ type, text }) => (
 
 class HomeComponent extends Component {
   state = {
-    loading: true
+    loading: true,
+    isData: false
   };
 
   onChange = checked => {
     this.setState({ loading: !checked });
   };
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.cardData !== nextProps.cardData) {
+      this.setState({ isData: true });
+    }
+  }
+
   render() {
     const { loading, overflow } = this.state;
-
     return (
       <div style={{ background: "#fff", padding: "2rem", overflow }}>
+        {this.state.isData ? <div>
         <Switch checked={!loading} onChange={this.onChange} />
 
         <List
           itemLayout="vertical"
           size="large"
-          dataSource={listData}
+          dataSource={this.props.cardData.data}
           renderItem={item => (
             <List.Item
-              key={item.title}
+              key={item.arxiv_id}
               actions={
                 !loading && [
                   <IconText type="star-o" text="156" />,
                   <IconText type="like-o" text="156" />,
-                  <IconText type="message" text="2" />
+                  <span>
+                    <Icon type="file-pdf" style={{ marginRight: 8 }} />
+                    <a href={item.pdf_link}>PDF</a>
+                  </span>,
                 ]
-              }
-              extra={
-                !loading && (
-                  <img
-                    width={272}
-                    alt="logo"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                  />
-                )
               }
             >
               <Skeleton loading={loading} active avatar>
                 <List.Item.Meta
-                  avatar={<Avatar src={item.avatar} />}
-                  title={<a href={item.href}>{item.title}</a>}
-                  description={item.description}
+                  title={<a href={item.abs_page_link}>{item.title}</a>}
+                  description={item.authors}
                 />
-                {item.content}
+                {item.abstract}
               </Skeleton>
             </List.Item>
           )}
         />
+          </div> : null
+        }
       </div>
     );
   }
 }
 
-export default HomeComponent;
+const mapStateToProps = (state) => {
+  return { cardData: state.cardReducer }
+};
+
+export default connect(mapStateToProps)(HomeComponent);
