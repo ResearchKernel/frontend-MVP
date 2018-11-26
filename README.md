@@ -3,7 +3,7 @@
 
 # Research Kernel's Frontend
 
-We at Research Kernel are working on **React.js** for developing UI for Frontend with **Ant Deisng** as a UI design language.  
+We at Research Kernel are working on **React.js** for developing UI for Frontend with **Ant Design** as a UI design language.  
 
 ##  What this Organisation do ?
 
