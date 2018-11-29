@@ -6,6 +6,7 @@ import { SubNavMenu, MenuItem } from "./sub_navbar.style";
 import category from "../../../_assets/category";
 import SiderComponent from "../sidebar/sidebar.component";
 import { fetchSubCategory } from "../../../_actions/subNavBar.action";
+import { fetchArxivData } from "../../../_actions/arxiv.action"; 
 
 class SubNavbarComponent extends React.Component {
   state = {
@@ -22,6 +23,7 @@ class SubNavbarComponent extends React.Component {
   handleSubCategory = (e) => {
     const payload = e.item.props.children;
     this.props.fetchSubCategory(payload);
+    this.props.fetchArxivData("electron");
   };
 
   render() {
@@ -41,11 +43,15 @@ class SubNavbarComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { subCategory: state.subCategory }
+  return {
+    subCategory: state.subCategory,
+    arxivData: state.arxivReducer
+  }
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload))
+  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload)),
+  fetchArxivData: (query) => dispatch(fetchArxivData(query))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubNavbarComponent);

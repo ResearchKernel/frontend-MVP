@@ -20,7 +20,10 @@ class HomeComponent extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.cardData !== nextProps.cardData) {
+    // if(this.props.cardData !== nextProps.cardData) {
+    //   this.setState({ isData: true });
+    // }
+    if(this.props.arxivData !== nextProps.cardData) {
       this.setState({ isData: true });
     }
   }
@@ -35,27 +38,27 @@ class HomeComponent extends Component {
         <List
           itemLayout="vertical"
           size="large"
-          dataSource={this.props.cardData.data}
+          dataSource={this.props.arxivData.data}
           renderItem={item => (
             <List.Item
-              key={item.arxiv_id}
+              key={item.arxiv_id} // Needs to change
               actions={
                 !loading && [
                   <IconText type="star-o" text="156" />,
                   <IconText type="like-o" text="156" />,
                   <span>
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
-                    <a href={item.pdf_link}>PDF</a>
+                    <a href={item.pdf_link}>PDF</a> {/*Needs to change*/}
                   </span>,
                 ]
               }
             >
               <Skeleton loading={loading} active avatar>
                 <List.Item.Meta
-                  title={<a href={item.abs_page_link}>{item.title}</a>}
-                  description={item.authors}
+                  title={<a href={item.id} target="_blank">{item.title}</a>}
+                  // description={item.authors} // Needs to change
                 />
-                {item.abstract}
+                {item.summary}
               </Skeleton>
             </List.Item>
           )}
@@ -68,7 +71,10 @@ class HomeComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { cardData: state.cardReducer }
+  return {
+    cardData: state.cardReducer,
+    arxivData: state.arxivReducer
+  }
 };
 
 export default connect(mapStateToProps)(HomeComponent);
