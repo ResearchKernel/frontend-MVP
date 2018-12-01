@@ -30,6 +30,7 @@ class HomeComponent extends Component {
 
   render() {
     const { loading, overflow } = this.state;
+    const authors = [];
     return (
       <div style={{ background: "#fff", padding: "2rem", overflow }}>
         {this.state.isData ? <div>
@@ -48,7 +49,7 @@ class HomeComponent extends Component {
                   <IconText type="like-o" text="156" />,
                   <span>
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
-                    <a href={item.pdf_link}>PDF</a> {/*Needs to change*/}
+                    <a href={item.id[0].replace("abs", "pdf")} target="_blank">PDF</a>
                   </span>,
                 ]
               }
@@ -56,7 +57,9 @@ class HomeComponent extends Component {
               <Skeleton loading={loading} active avatar>
                 <List.Item.Meta
                   title={<a href={item.id} target="_blank">{item.title}</a>}
-                  // description={item.authors} // Needs to change
+                  description={item.author.map((authorName, key) => {
+                    return (authors[key] = authorName.name[0] + ' ')
+                  })}
                 />
                 {item.summary}
               </Skeleton>

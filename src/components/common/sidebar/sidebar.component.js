@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { Menu, Layout } from "antd";
 import { menuItemStyle } from "./sidebar.style";
 import { fetchCardData } from "../../../_actions/cardData.action";
+import { fetchArxivData } from "../../../_actions/arxiv.action";
 import category from "../../../_assets/category"
 
 const Sider = Layout.Sider;
 
 class SiderComponent extends React.Component {
   handleClick = e => {
-    this.props.fetchCardData(e.key,10,10);
+    // this.props.fetchCardData(e.key,10,10);
+    this.props.fetchArxivData('cat', e.key, '0', '10');
   };
 
   render() {
@@ -62,7 +64,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCardData: (subCategory, limit, offset) => dispatch(fetchCardData(subCategory, limit, offset))
+  fetchCardData: (subCategory, limit, offset) => dispatch(fetchCardData(subCategory, limit, offset)),
+  fetchArxivData: (prefix, query, start, maxResults) => dispatch(fetchArxivData(prefix, query, start, maxResults))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiderComponent);
