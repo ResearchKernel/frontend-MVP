@@ -1,52 +1,60 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchArxivData } from "../../../_actions/arxiv.action";
 import { Icon, Button, Input, AutoComplete } from "antd";
 
-const Option = AutoComplete.Option;
+const Search = Input.Search;
 
-function onSelect(value) {
-  console.log("onSelect", value);
-}
+// const Option = AutoComplete.Option;
 
-function getRandomInt(max, min = 0) {
-  return Math.floor(Math.random() * (max - min + 1)) + min; // eslint-disable-line no-mixed-operators
-}
+// function onSelect(value) {
+//   console.log("onSelect", value);
+// }
 
-function searchResult(query) {
-  return new Array(getRandomInt(5))
-    .join(".")
-    .split(".")
-    .map((item, idx) => ({
-      query,
-      category: `${query}${idx}`,
-      count: getRandomInt(200, 100)
-    }));
-}
+// function getRandomInt(max, min = 0) {
+//   return Math.floor(Math.random() * (max - min + 1)) + min; // eslint-disable-line no-mixed-operators
+// }
 
-function renderOption(item) {
-  return (
-    <Option key={item.category} text={item.category}>
-      {item.query}
-      <a
-        href={`https://s.taobao.com/search?q=${item.query}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {item.category}
-      </a>
-      <span className="global-search-item-count">{item.count}</span>
-    </Option>
-  );
-}
+// function searchResult(query) {
+//   return new Array(getRandomInt(5))
+//     .join(".")
+//     .split(".")
+//     .map((item, idx) => ({
+//       query,
+//       category: `${query}${idx}`,
+//       count: getRandomInt(200, 100)
+//     }));
+// }
 
-class Complete extends React.Component {
+// function renderOption(item) {
+//   return (
+//     <Option key={item.category} text={item.category}>
+//       {item.query}
+//       <a
+//         href={`https://s.taobao.com/search?q=${item.query}`}
+//         target="_blank"
+//         rel="noopener noreferrer"
+//       >
+//         {item.category}
+//       </a>
+//       <span className="global-search-item-count">{item.count}</span>
+//     </Option>
+//   );
+// }
+
+class SearchBoxComponent extends React.Component {
   state = {
     dataSource: []
   };
 
+  // handleSearch = value => {
+  //   this.setState({
+  //     dataSource: value ? searchResult(value) : []
+  //   });
+  // };
+
   handleSearch = value => {
-    this.setState({
-      dataSource: value ? searchResult(value) : []
-    });
+    this.props.fetchArxivData('all', value, '0', '10');
   };
 
   render() {
@@ -54,7 +62,7 @@ class Complete extends React.Component {
     return (
       <div style={{ flex: 1 }}>
         <div className="global-search-wrapper" style={{ width: 400 }}>
-          <AutoComplete
+          {/* <AutoComplete
             className="global-search"
             size="medium"
             style={{ width: "100%" }}
@@ -71,11 +79,20 @@ class Complete extends React.Component {
                 </Button>
               }
             />
-          </AutoComplete>
+          </AutoComplete> */}
+        <Search 
+           placeholder="input search text"
+           enterButton
+           onSearch={value => this.handleSearch(value)}
+        />
         </div>
       </div>
     );
   }
 }
 
-export default Complete;
+const mapDispatchToProps = dispatch => ({
+  fetchArxivData: (prefix, query, start, maxResults) => dispatch(fetchArxivData(prefix, query, start, maxResults))
+})
+
+export default connect(null, mapDispatchToProps)(SearchBoxComponent);
