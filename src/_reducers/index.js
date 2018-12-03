@@ -3,10 +3,12 @@ import { login } from "./auth.reducer";
 import { catgory } from "./subNavBar.reducer";
 import { subCategory } from "./subCategory.reducer";
 import { cardReducer } from "./cardData.reducer";
+import { githubReducer } from "./github.reducer";
+
 import { arxivReducer } from "./arxiv.reducer";
 
 const rootReducer = combineReducers({
-  login, catgory, subCategory, cardReducer, arxivReducer
+  login, catgory, subCategory, cardReducer, githubReducer, arxivReducer
 });
 
 export default rootReducer;

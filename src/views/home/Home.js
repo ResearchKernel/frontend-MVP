@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { fetchGithubSearch } from "../../_actions/github.action"
 import { Skeleton, Switch, List, Avatar, Icon, Form, Button } from "antd";
 
 const IconText = ({ type, text}) => (
@@ -17,6 +18,10 @@ class HomeComponent extends Component {
 
   onChange = checked => {
     this.setState({ loading: !checked });
+  };
+
+  handleGithub = (title) => {
+    this.props.fetchGithubSearch(title);
   };
 
   componentWillReceiveProps(nextProps) {
@@ -51,6 +56,14 @@ class HomeComponent extends Component {
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
                     <a href={item.id[0].replace("abs", "pdf")} target="_blank">PDF</a>
                   </span>,
+                  <span>
+                    <Button
+                      shape="circle"
+                      icon="github"
+                      style={{ marginRight: 8 }}
+                      onClick={() => this.handleGithub(item.title)}
+                    />
+                  </span>,
                 ]
               }
             >
@@ -80,4 +93,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(HomeComponent);
+const mapDispatchToProps = dispatch => ({
+  fetchGithubSearch: (title) => dispatch(fetchGithubSearch(title))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
