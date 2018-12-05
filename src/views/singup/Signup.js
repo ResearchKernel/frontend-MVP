@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Row, Col, Button, Icon, Input, Form, Tooltip } from 'antd';
+import GoogleLogin from './GoogleLogin';
+import LinkedinLogin from './LinkedinLogin';
 const FormItem = Form.Item;
 class Signup extends Component {
     state = { username: "", email: "", password: "" }
@@ -102,13 +104,14 @@ class Signup extends Component {
                 </FormItem>
                 <FormItem><Row type="flex" justify="center">
                     <Col xs={6.5} sm={4} md={3} lg={2}>
-                        <Button block onClick={this.handleGoogle} ><Icon style={{ fontSize: '25px', color: "red" }} type="google-plus" /></Button>
+
+                        <GoogleLogin/>
                     </Col>
                     <Col xs={6.5} sm={4} md={3} lg={2}>
                         <Button block onClick={this.handleGithub}><Icon style={{ fontSize: '25px' }} type="github" /></Button>
                     </Col>
                     <Col xs={6.5} sm={4} md={3} lg={2}>
-                        <Button block onClick={this.handleLinkedin}><Icon style={{ fontSize: '25px', color: "#4E98C9" }} type="linkedin" /></Button>
+                        <LinkedinLogin/>
                     </Col>
                 </Row></FormItem>
                 <FormItem>
