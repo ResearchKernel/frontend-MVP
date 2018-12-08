@@ -87,6 +87,7 @@ class HomeComponent extends Component {
           </div> : null
         }
         <Drawer
+          width={640}
           title="Github"
           placement="right"
           closable={false}
