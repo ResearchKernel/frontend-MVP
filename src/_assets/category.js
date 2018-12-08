@@ -598,7 +598,7 @@ const category = [
   {
     type: 'Statistics',
     collapsed: false,
-    code: '',
+    code: 'stat',
     sub: [
       {
       name: 'Applications',
@@ -629,7 +629,7 @@ const category = [
   {
     type: 'Quantitative Biology',
     collapsed: false,
-    code: '',
+    code: 'q-bio',
     sub: [
       {
       name: 'Biomolecules',
