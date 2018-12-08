@@ -17,9 +17,8 @@ class SiderComponent extends React.Component {
   render() {
     return (
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        style={{ background: "#fff" }}
+        
+        style={{  background: "#fff", overflow:'auto' }}
         theme="dark"
         width={200}
         onBreakpoint={broken => {
