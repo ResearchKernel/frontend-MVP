@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { List } from "antd";
+// import { List } from "antd";
 import { SubNavMenu, MenuItem } from "./sub_navbar.style";
 // import { fetchCategory } from "../../../_actions/subNavBar.action";
 import category from "../../../_assets/category";
-import SiderComponent from "../sidebar/sidebar.component";
+// import SiderComponent from "../sidebar/sidebar.component";
 import { fetchSubCategory } from "../../../_actions/subNavBar.action";
 
 class SubNavbarComponent extends React.Component {

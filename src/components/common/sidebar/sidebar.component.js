@@ -20,12 +20,6 @@ class SiderComponent extends React.Component {
         style={{ background: "#fff" }}
         theme="dark"
         width={200}
-        onBreakpoint={broken => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
       >
         <Menu
           style={{ background: "#fff" }}
@@ -46,6 +40,8 @@ class SiderComponent extends React.Component {
                     </Menu.Item>
                   )
                 }))
+              } else {
+                return null;
               }
             })
           }

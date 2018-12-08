@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGithubSearch } from "../../_actions/github.action"
-import { Skeleton, Switch, List, Avatar, Icon, Form, Button } from "antd";
+import { Skeleton, Switch, List, Icon, Button } from "antd";
 
 const IconText = ({ type, text}) => (
   <span>
