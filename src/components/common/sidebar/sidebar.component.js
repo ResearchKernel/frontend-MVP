@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Menu, Layout } from "antd";
 import { menuItemStyle } from "./sidebar.style";
 import { fetchCardData } from "../../../_actions/cardData.action";
@@ -44,7 +45,9 @@ class SiderComponent extends React.Component {
                 item.sub.map((sub) => {
                   return (
                     <Menu.Item style={menuItemStyle} key={sub.code}>
-                      {sub.name}
+                      <Link to={`/${sub.code}`}>
+                        {sub.name}
+                      </Link>
                     </Menu.Item>
                   )
                 }))

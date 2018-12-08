@@ -43,7 +43,7 @@ class AppComponent extends Component {
             <Switch>
               <Route
                 exact
-                path="/"
+                path="/:Category"
                 render={routerProps => {
                   return <Home {...routerProps} />;
                 }}
