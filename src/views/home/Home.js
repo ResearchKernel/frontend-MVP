@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGithubSearch } from "../../_actions/github.action"
-import { Skeleton, Switch, List, Avatar, Icon, Form, Button, Drawer } from "antd";
+import { Skeleton, Switch, List, Avatar, Icon, Form, Button, Drawer, Spin } from "antd";
 import GithubComponent from "../../components/common/github/github.component";
 
 const IconText = ({ type, text}) => (
@@ -84,7 +84,7 @@ class HomeComponent extends Component {
             </List.Item>
           )}
         />
-          </div> : null
+          </div> : <Spin />
         }
         <Drawer
           width={640}

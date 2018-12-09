@@ -16,14 +16,14 @@ class GithubComponent extends Component {
   
   componentWillReceiveProps(nextProps) {
     if(this.props.githubData !== nextProps.githubData) {
-      this.setState({ isData: true });
+      if(nextProps.githubData.data.items.length !== 0)
+        this.setState({ isData: true });
     }
   }
 
   render() {
     const data = this.props.githubData.data;
-    if(!this.state.isData && data.length === 0) {
-      console.log("inside")
+    if(!this.state.isData) {
       return(<div>No Github repositories.</div>)
     }
     return (
@@ -54,7 +54,6 @@ class GithubComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     githubData: state.githubReducer,
   }
