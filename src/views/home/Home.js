@@ -38,7 +38,7 @@ class HomeComponent extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.arxivData !== nextProps.cardData) {
+    if(this.props.arxivData !== nextProps.arxivData) {
       this.setState({ isData: true });
     }
   }
