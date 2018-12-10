@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { login } from "./../../_actions/auth.action";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Form, Icon, Button, Checkbox, Input } from 'antd';
+import { Form, Icon, Input } from 'antd';
 import {
   StyledForm,
   LoginButton,
@@ -59,10 +59,6 @@ class Login extends Component {
               onChange={this.handlePassword}
               />
           </FormItem>
-                    {/* <FormItem>
-            <Checkbox>Remember me</Checkbox>
-              <Forgot><a href="">Forgot password</a></Forgot>
-          </FormItem> */}
           <FormItem>
             <LoginButton type="primary" htmlType="submit">
               Sign In

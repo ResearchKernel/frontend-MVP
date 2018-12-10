@@ -42,7 +42,7 @@ class GithubComponent extends Component {
               ]}
             >
               <List.Item.Meta
-                title={<a href={item.svn_url} target="_blank">{item.name}</a>}
+                title={<a href={item.svn_url} target="_blank" rel="noopener noreferrer">{item.name}</a>}
                 description={item.owner.login}
               />
             </List.Item>
