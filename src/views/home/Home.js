@@ -58,8 +58,6 @@ class HomeComponent extends Component {
               key={key}
               actions={
                 !loading && [
-                  <IconText type="star-o" text="156" />,
-                  <IconText type="like-o" text="156" />,
                   <span>
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
                     <a href={item.id[0].replace("abs", "pdf")} target="_blank" rel="noopener noreferrer">PDF</a>
