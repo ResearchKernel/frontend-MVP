@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGithubSearch } from "../../_actions/github.action"
-import { Skeleton, Switch, List, Avatar, Icon, Form, Button, Drawer, Spin } from "antd";
+import { fetchArxivData } from "../../_actions/arxiv.action";
+import { Skeleton, List, Icon, Drawer, Spin, Pagination } from "antd";
 import GithubComponent from "../../components/common/github/github.component";
 
 const IconText = ({ type, text}) => (
@@ -13,20 +14,21 @@ const IconText = ({ type, text}) => (
 
 class HomeComponent extends Component {
   state = {
-    // loading: true,
     isData: false,
     visible: false
   };
-
-  // onChange = checked => {
-  //   this.setState({ loading: !checked });
-  // };
 
   handleGithub = (title) => {
     this.props.fetchGithubSearch(title);
     this.setState({
       visible: true,
     });
+  };
+
+  handlePagination = (current, pageSize) => {
+    const category = this.props.match.params.Category;
+    const start = (current-1)*pageSize;
+    this.props.fetchArxivData('cat', category, start, pageSize);
   };
 
   onClose = () => {
@@ -36,21 +38,17 @@ class HomeComponent extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // if(this.props.cardData !== nextProps.cardData) {
-    //   this.setState({ isData: true });
-    // }
     if(this.props.arxivData !== nextProps.cardData) {
       this.setState({ isData: true });
     }
   }
 
   render() {
-    const { loading, overflow, visible, isData } = this.state;
+    const { loading, overflow, isData } = this.state;
     const authors = [];
     return (
       <div style={{ background: "#fff", padding: "2rem", overflow }}>
         {isData ? <div>
-        {/* <Switch checked={!loading} onChange={this.onChange} /> */}
         <List
           itemLayout="vertical"
           size="large"
@@ -64,7 +62,7 @@ class HomeComponent extends Component {
                   <IconText type="like-o" text="156" />,
                   <span>
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
-                    <a href={item.id[0].replace("abs", "pdf")} target="_blank">PDF</a>
+                    <a href={item.id[0].replace("abs", "pdf")} target="_blank" rel="noopener noreferrer">PDF</a>
                   </span>,
                   <span>
                     <Icon onClick={() => this.handleGithub(item.title)} type="github" style={{ marginRight: 8 }} />
@@ -74,7 +72,7 @@ class HomeComponent extends Component {
             >
               <Skeleton loading={false} active avatar>
                 <List.Item.Meta
-                  title={<a href={item.id} target="_blank">{item.title}</a>}
+                  title={<a href={item.id} target="_blank" rel="noopener noreferrer">{item.title}</a>}
                   description={item.author.map((authorName, key) => {
                     return (authors[key] = authorName.name[0] + ' ')
                   })}
@@ -84,7 +82,8 @@ class HomeComponent extends Component {
             </List.Item>
           )}
         />
-          </div> : <Spin />
+        <Pagination showSizeChanger onChange={this.handlePagination} defaultCurrent={1} total={1000} />,
+        </div> : <Spin />
         }
         <Drawer
           width={640}
@@ -103,13 +102,13 @@ class HomeComponent extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cardData: state.cardReducer,
     arxivData: state.arxivReducer
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchGithubSearch: (title) => dispatch(fetchGithubSearch(title))
+  fetchGithubSearch: (title) => dispatch(fetchGithubSearch(title)),
+  fetchArxivData: (prefix, query, start, maxResults) => dispatch(fetchArxivData(prefix, query, start, maxResults))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
