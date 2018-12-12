@@ -2,18 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGithubSearch } from "../../_actions/github.action"
 import { fetchArxivData } from "../../_actions/arxiv.action";
-import { Skeleton, List, Icon, Drawer, Spin, Pagination } from "antd";
+import { Skeleton, List, Icon, Drawer, Pagination } from "antd";
 import GithubComponent from "../../components/common/github/github.component";
-
-const IconText = ({ type, text}) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 
 class HomeComponent extends Component {
   state = {
+    loading: false,
     isData: false,
     visible: false
   };
@@ -81,7 +75,7 @@ class HomeComponent extends Component {
           )}
         />
         <Pagination showSizeChanger onChange={this.handlePagination} defaultCurrent={1} total={1000} />,
-        </div> : <Spin />
+        </div> : null
         }
         <Drawer
           width={640}

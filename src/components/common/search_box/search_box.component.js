@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchArxivData } from "../../../_actions/arxiv.action";
-import { Icon, Button, Input, AutoComplete } from "antd";
+import { Input } from "antd";
 
 const Search = Input.Search;
 
@@ -58,7 +58,6 @@ class SearchBoxComponent extends React.Component {
   };
 
   render() {
-    const { dataSource } = this.state;
     return (
       <div style={{ flex: 1 }}>
         <div className="global-search-wrapper" style={{ width: 400 }}>

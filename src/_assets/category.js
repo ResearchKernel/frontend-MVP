@@ -169,7 +169,11 @@ const category = [
     type: 'Quantum Physics',
     collapsed: false,
     code: 'quant-ph',
-    sub: [],
+    sub: [{
+      name: 'Quantum Physics',
+      code: 'quant-ph',
+      collapsed: false
+    },],
   },
   {
     type: 'Mathematics',
