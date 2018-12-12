@@ -169,7 +169,11 @@ const category = [
     type: 'Quantum Physics',
     collapsed: false,
     code: 'quant-ph',
-    sub: [],
+    sub: [{
+      name: 'Quantum Physics',
+      code: 'quant-ph',
+      collapsed: false
+    },],
   },
   {
     type: 'Mathematics',
@@ -598,7 +602,7 @@ const category = [
   {
     type: 'Statistics',
     collapsed: false,
-    code: '',
+    code: 'stat',
     sub: [
       {
       name: 'Applications',
@@ -629,7 +633,7 @@ const category = [
   {
     type: 'Quantitative Biology',
     collapsed: false,
-    code: '',
+    code: 'q-bio',
     sub: [
       {
       name: 'Biomolecules',

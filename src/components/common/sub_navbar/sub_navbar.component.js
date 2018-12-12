@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { List } from "antd";
 import { SubNavMenu, MenuItem } from "./sub_navbar.style";
-// import { fetchCategory } from "../../../_actions/subNavBar.action";
 import category from "../../../_assets/category";
-import SiderComponent from "../sidebar/sidebar.component";
 import { fetchSubCategory } from "../../../_actions/subNavBar.action";
 
 class SubNavbarComponent extends React.Component {
@@ -13,7 +10,6 @@ class SubNavbarComponent extends React.Component {
   };
 
   handleClick = e => {
-    console.log("click ", e);
     this.setState({
       current: e.key
     });
@@ -41,11 +37,13 @@ class SubNavbarComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { subCategory: state.subCategory }
+  return {
+    subCategory: state.subCategory,
+  }
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload))
+  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubNavbarComponent);

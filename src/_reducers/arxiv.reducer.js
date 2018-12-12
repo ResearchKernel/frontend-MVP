@@ -1,4 +1,4 @@
-export function cardReducer(
+export function arxivReducer(
     state = {
       processing: false,
       data: null,
@@ -7,22 +7,22 @@ export function cardReducer(
     action
   ) {
     switch (action.type) {
-      case "CARD_PENDING": {
+      case "ARXIV_PENDING": {
         return {
           ...state,
           processing: true,
           error: false
         };
       }
-      case "CARD_FULFILLED": {
+      case "ARXIV_FULFILLED": {
         return {
           ...state,
           processing: false,
-          data: action.cardData,
+          data: action.arxivData,
           error: false
         };
       }
-      case "CARD_REJECTED": {
+      case "ARXIV_REJECTED": {
         return {
           ...state,
           processing: false,
