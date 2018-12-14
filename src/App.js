@@ -7,6 +7,7 @@ import Home from "./views/home/Home";
 import Navbar from "./components/common/navbar/navbar.component";
 import SubNavbar from "./components/common/sub_navbar/sub_navbar.component";
 import Sidebar from "./components/common/sidebar/sidebar.component";
+import Signup from "./views/singup/Signup";
 // import MainComponent from "./views/main/Main";
 
 const App = styled.div`
@@ -58,6 +59,13 @@ class AppComponent extends Component {
                     <Login {...routerProps} />
                   );
                 }}
+              />
+              <Route
+              exact
+              path="/sign-up"
+              render={routerProps => {
+                return <Signup {...routerProps} />;
+              }}
               />
             </Switch>
           </MainView>
