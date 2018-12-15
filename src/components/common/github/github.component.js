@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { List, Icon } from "antd";
+import { List, Icon, Skeleton } from "antd";
 
 const IconText = ({ type, text}) => (
   <span>
@@ -23,9 +23,9 @@ class GithubComponent extends Component {
 
   render() {
     const data = this.props.githubData.data;
-    if(!this.state.isData) {
-      return(<div>No Github repositories.</div>)
-    }
+    // if(!this.state.isData) {
+    //   return(<div>No Github repositories.</div>)
+    // }
     return (
       <div>
         { this.state.isData ?
@@ -47,7 +47,7 @@ class GithubComponent extends Component {
               />
             </List.Item>
           )}
-        /> : <span>Loading...</span> }
+        /> : <Skeleton active /> }
       </div>
     );
   }
