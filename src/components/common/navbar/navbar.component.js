@@ -14,9 +14,9 @@ const NavbarComponent = () => {
   return (
     <Navbar>
       <NavbarLogo>
-        {/* <StyledLink as={Link} to="/"> */}
+        <StyledLink as={Link} to="/">
         <NavbarImg src={Logo} />
-        {/* </StyledLink> */}
+        </StyledLink>
       </NavbarLogo>
       <NavbarLinks>
         <StyledLink as={Link} to="/community">

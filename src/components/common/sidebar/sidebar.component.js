@@ -37,7 +37,7 @@ class SiderComponent extends React.Component {
                 item.sub.map((sub) => {
                   return (
                     <Menu.Item style={menuItemStyle} key={sub.code}>
-                      <Link to={`/${sub.code}`}>
+                      <Link to={`/category/${sub.code}`}>
                         {sub.name}
                       </Link>
                     </Menu.Item>
