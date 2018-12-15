@@ -514,15 +514,11 @@ const category = [
          collapsed: false
        }, {
          name: 'Applied Physics',
-         code: 'physics.acc-ph',
-         collapsed: false
-       }, {
-         name: 'Accelerator Physics',
          code: 'physics.app-ph',
          collapsed: false
        }, {
          name: 'Atomic and Molecular Clusters',
-         code: 'physics..atm-clus',
+         code: 'physics.atm-clus',
          collapsed: false
        }, {
          name: 'Atomic Physics',
@@ -546,7 +542,7 @@ const category = [
          collapsed: false
        }, {
          name: 'Data Analysis, Statistics and Probability',
-         code: 'physics..data-an',
+         code: 'physics.data-an',
          collapsed: false
        }, {
          name: 'Physics Education',
@@ -554,7 +550,7 @@ const category = [
          collapsed: false
        }, {
          name: 'Fluid Dynamics',
-         code: 'physics..flu-dyn',
+         code: 'physics.flu-dyn',
          collapsed: false
        }, {
          name: 'General Physics',
