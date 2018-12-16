@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 import { fetchGithubSearch } from "../../_actions/github.action"
 import { fetchArxivData } from "../../_actions/arxiv.action";
 import { Skeleton, List, Icon, Drawer, Pagination } from "antd";
@@ -38,7 +39,7 @@ class CategoryComponent extends Component {
   }
 
   render() {
-    const { loading, overflow, isData } = this.state;
+    const { loading, overflow, isData, visible } = this.state;
     const authors = [];
     return (
       <div style={{ background: "#fff", padding: "2rem", overflow }}>
@@ -52,7 +53,7 @@ class CategoryComponent extends Component {
               key={key}
               actions={
                 !loading && [
-                  <span>Published {item.published}</span>,
+                  <span>{moment(item.published[0]).format('MMMM Do YYYY')}</span>,
                   <span>
                     <Icon type="file-pdf" style={{ marginRight: 8 }} />
                     <a href={item.id[0].replace("abs", "pdf")} target="_blank" rel="noopener noreferrer">PDF</a>
@@ -76,7 +77,7 @@ class CategoryComponent extends Component {
           )}
         />
         <Pagination showSizeChanger onChange={this.handlePagination} defaultCurrent={1} total={1000} />,
-        </div> : <Skeleton active />
+        </div> : <Skeleton active paragraph={{ rows: 10 }} />
         }
         <Drawer
           width={640}
@@ -84,7 +85,7 @@ class CategoryComponent extends Component {
           placement="right"
           closable={false}
           onClose={this.onClose}
-          visible={this.state.visible}
+          visible={visible}
         >
           <GithubComponent />
         </Drawer>
