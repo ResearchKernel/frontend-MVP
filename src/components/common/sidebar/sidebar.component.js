@@ -31,10 +31,11 @@ class SiderComponent extends React.Component {
           mode="inline"
         >
           {
-            category.map((item) => {
-              if(item.type === this.props.subCategory) {
-                return(
-                item.sub.map((sub) => {
+            category
+            .filter(item => item.type === this.props.subCategory)
+            .map(item => {
+              return(
+                item.sub.map(sub => {
                   return (
                     <Menu.Item style={menuItemStyle} key={sub.code}>
                       <Link to={`/category/${sub.code}`}>
@@ -42,8 +43,8 @@ class SiderComponent extends React.Component {
                       </Link>
                     </Menu.Item>
                   )
-                }))
-              }
+                })
+              )
             })
           }
         </Menu>

@@ -16,7 +16,7 @@ class CategoryComponent extends Component {
   handleGithub = (title) => {
     this.props.fetchGithubSearch(title);
     this.setState({
-      visible: true,
+      visible: true
     });
   };
 

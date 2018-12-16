@@ -6,7 +6,6 @@ import promiseMiddleware from "redux-promise-middleware";
 
 import reducer from "./_reducers";
 
-// const middleware = applyMiddleware(promiseMiddleware(), thunk);
 const middleware = applyMiddleware(promiseMiddleware(), thunk, logger);
 
 export default createStore(reducer, middleware);
