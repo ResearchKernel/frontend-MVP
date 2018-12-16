@@ -12,23 +12,25 @@ const IconText = ({ type, text}) => (
 class GithubComponent extends Component {
   state = {
     isData: false,
+    noRepo: false
   };    
   
   componentWillReceiveProps(nextProps) {
     if(this.props.githubData !== nextProps.githubData) {
       if(nextProps.githubData.data.items.length !== 0)
         this.setState({ isData: true });
+      else{
+        this.setState({ noRepo: true, isData: false });
+      }
     }
   }
 
   render() {
     const data = this.props.githubData.data;
-    // if(!this.state.isData) {
-    //   return(<div>No Github repositories.</div>)
-    // }
+    const { isData, noRepo } = this.state;
     return (
       <div>
-        { this.state.isData ?
+        { isData ?
         <List
           itemLayout="vertical"
           dataSource={data.items}
@@ -47,7 +49,7 @@ class GithubComponent extends Component {
               />
             </List.Item>
           )}
-        /> : <Skeleton active /> }
+        /> : noRepo ? <div>No Github repositories.</div> : <Skeleton active paragraph={{ rows: 10 }} /> }
       </div>
     );
   }
