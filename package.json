@@ -6,6 +6,7 @@
     "antd": "^3.10.7",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
+    "moment": "^2.23.0",
     "node-sass": "^4.10.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.6.2",
@@ -18,7 +19,8 @@
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.1.1"
+    "styled-components": "^4.1.1",
+    "xml2js": "^0.4.19"
   },
   "scripts": {
     "start": "react-app-rewired start",

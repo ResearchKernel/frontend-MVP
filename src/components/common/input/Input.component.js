@@ -10,7 +10,6 @@ class InputComponent extends Component {
       onChange,
       type,
       label
-      //   labelPosition
     } = this.props;
     return (
       <InputWrapper>
