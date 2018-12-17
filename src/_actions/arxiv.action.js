@@ -3,7 +3,7 @@ var XMLTojs = require('xml2js');
 
 export function fetchArxivData(prefix, query, start, maxResults) {
   return dispatch => {
-    axios.get(`http://export.arxiv.org/api/query?search_query=${prefix}:${query}&start=${start}&max_results=${maxResults}`)
+    axios.get(`https://export.arxiv.org/api/query?search_query=${prefix}:${query}&start=${start}&max_results=${maxResults}`)
       .then(response => {
         var data = [];
         var parseString = XMLTojs.parseString;
