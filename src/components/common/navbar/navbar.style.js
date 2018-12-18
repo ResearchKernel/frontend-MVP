@@ -13,9 +13,6 @@ export const Navbar = styled.div`
 
 export const NavbarLinks = styled.div`
   display: inherit;
-  @media (max-width: 992px) {
-    display: none;
-  }
 `;
 
 export const NavbarLogo = styled.div`

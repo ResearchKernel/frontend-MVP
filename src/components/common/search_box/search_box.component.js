@@ -61,7 +61,7 @@ class SearchBoxComponent extends React.Component {
     const { dataSource } = this.state;
     return (
       <div style={{ flex: 1 }}>
-        <div className="global-search-wrapper" style={{ width: 400 }}>
+        <div>
           {/* <AutoComplete
             className="global-search"
             size="medium"
