@@ -16,7 +16,7 @@ class SubNavbarComponent extends React.Component {
   };
 
   handleSubCategory = (e) => {
-    const payload = e.item.props.children;
+    const payload = e.item.props.code;
     this.props.fetchSubCategory(payload);
   };
 
@@ -29,7 +29,7 @@ class SubNavbarComponent extends React.Component {
         mode="horizontal"
       >
       {
-        category.map((item,key) => <MenuItem key={key}>{item.type}</MenuItem>)
+        category.map((item,key) => <MenuItem key={key} code={item.code}>{item.type}</MenuItem>)
       }
       </SubNavMenu>
     );

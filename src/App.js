@@ -42,7 +42,7 @@ class AppComponent extends Component {
         <Navbar />
         <SubNavbar />
         <Content>
-          <Sidebar />
+          <Sidebar {...this.props} />
           <MainView>
             <Switch>
               <Route
