@@ -21,6 +21,10 @@ class SiderComponent extends React.Component {
   };
 
   componentDidMount() {
+    this.updateHooks();
+  }
+
+  updateHooks = () => {
     const loc = this.props.location.pathname;
     if (loc === "/") {
       this.props.history.push("/category/astro-ph");
@@ -37,6 +41,12 @@ class SiderComponent extends React.Component {
         this.props.fetchArxivData('cat', catsub, '0', '10');
         this.props.fetchSubCategory(catsub.split(".")[0]);
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.updateHooks();
     }
   }
 
