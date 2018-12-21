@@ -37,8 +37,7 @@ class SiderComponent extends React.Component {
         const catsub = loc.substr(lastIndex + 1);
         const cat = catsub.split(".")[0];
         const index = category
-          .filter(item => item.code === cat)[0]
-          ["sub"].findIndex(subitem => subitem.code === catsub);
+          .filter(item => item.code === cat)[0]["sub"].findIndex(subitem => subitem.code === catsub);
         this.setState({ selectedKeys: index.toString() });
         this.props.fetchArxivData(false, "cat", catsub, "0", "10");
         this.props.fetchSubCategory(catsub.split(".")[0]);
