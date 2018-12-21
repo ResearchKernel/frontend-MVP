@@ -11,14 +11,14 @@ class SearchBoxComponent extends React.Component {
   };
 
   handleSearch = value => {
-    this.props.fetchArxivData('all', value, '0', '10');
+    this.props.fetchArxivData(true, "all", value, "0", "10");
   };
 
   render() {
     return (
       <div style={{ flex: 1 }}>
         <div className="global-search-wrapper" style={{ width: 400 }}>
-          <Search 
+          <Search
             placeholder="Search"
             enterButton
             onSearch={value => this.handleSearch(value)}
@@ -30,7 +30,11 @@ class SearchBoxComponent extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchArxivData: (prefix, query, start, maxResults) => dispatch(fetchArxivData(prefix, query, start, maxResults))
-})
+  fetchArxivData: (search, prefix, query, start, maxResults) =>
+    dispatch(fetchArxivData(search, prefix, query, start, maxResults))
+});
 
-export default connect(null, mapDispatchToProps)(SearchBoxComponent);
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchBoxComponent);

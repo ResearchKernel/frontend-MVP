@@ -16,7 +16,7 @@ class SiderComponent extends React.Component {
   };
 
   handleClick = e => {
-    this.props.fetchArxivData("cat", e.item.props.code, "0", "10");
+    this.props.fetchArxivData(false, "cat", e.item.props.code, "0", "10");
     this.setState({ selectedKeys: e.item.props.index.toString() });
   };
 
@@ -29,7 +29,7 @@ class SiderComponent extends React.Component {
     if (loc === "/") {
       this.props.history.push("/category/astro-ph");
       this.setState({ selectedKeys: "0" });
-      this.props.fetchArxivData("cat", "astro-ph.CO", "0", "10");
+      this.props.fetchArxivData(false, "cat", "astro-ph.CO", "0", "10");
       this.props.fetchSubCategory("astro-ph");
     } else {
       const lastIndex = loc.lastIndexOf("/");
@@ -40,7 +40,7 @@ class SiderComponent extends React.Component {
           .filter(item => item.code === cat)[0]
           ["sub"].findIndex(subitem => subitem.code === catsub);
         this.setState({ selectedKeys: index.toString() });
-        this.props.fetchArxivData("cat", catsub, "0", "10");
+        this.props.fetchArxivData(false, "cat", catsub, "0", "10");
         this.props.fetchSubCategory(catsub.split(".")[0]);
       }
     }
@@ -58,7 +58,11 @@ class SiderComponent extends React.Component {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        style={{ background: "#fff", overflow: "auto" }}
+        style={{
+          background: "#fff",
+          overflow: "auto",
+          display: this.props.search ? "none" : "block"
+        }}
         theme="dark"
         width={250}
       >
@@ -76,7 +80,7 @@ class SiderComponent extends React.Component {
               return item.sub.map((sub, index) => {
                 return (
                   <Menu.Item style={menuItemStyle} key={index} code={sub.code}>
-                    <Tooltip placement="topRight" title={sub.name}>
+                    <Tooltip placement="right" title={sub.name}>
                       <Link
                         to={`/category/${sub.code}`}
                         style={{
@@ -100,13 +104,14 @@ class SiderComponent extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    subCategory: state.subCategory.data.subCategory
+    subCategory: state.subCategory.data.subCategory,
+    search: state.arxivReducer.search
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchArxivData: (prefix, query, start, maxResults) =>
-    dispatch(fetchArxivData(prefix, query, start, maxResults)),
+  fetchArxivData: (search, prefix, query, start, maxResults) =>
+    dispatch(fetchArxivData(search, prefix, query, start, maxResults)),
   fetchSubCategory: payload => dispatch(fetchSubCategory(payload))
 });
 
