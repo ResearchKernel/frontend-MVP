@@ -15,7 +15,7 @@ const NavbarComponent = () => {
     <Navbar>
       <NavbarLogo>
         <StyledLink as={Link} to="/">
-        <NavbarImg src={Logo} />
+          <NavbarImg src={Logo} />
         </StyledLink>
       </NavbarLogo>
       <NavbarLinks>
@@ -31,12 +31,12 @@ const NavbarComponent = () => {
         <StyledLink as={Link} to="/donate">
           Donate
         </StyledLink>
-        <StyledLink as={Link} to="/sign-in">
+        {/* <StyledLink as={Link} to="/sign-in">
           Sign In
         </StyledLink>
         <StyledLink as={Link} to="/sign-up">
           Sign Up
-        </StyledLink>
+        </StyledLink> */}
       </NavbarLinks>
       <SearchBox />
     </Navbar>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { isLoggedIn } from "./_actions/auth.action";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import Login from "./views/login/Login";
 import Home from "./views/home/Home";
@@ -31,7 +32,7 @@ const Content = styled.div`
 
 const MainView = styled.div`
   padding: 1rem;
-  width: calc(100% - 200px);
+  width: ${props => (props.search ? "100%" : "calc(100% - 200px)")};
   overflow-y: scroll;
 `;
 
@@ -42,8 +43,8 @@ class AppComponent extends Component {
         <Navbar />
         <SubNavbar />
         <Content>
-          <Sidebar />
-          <MainView>
+          <Sidebar {...this.props} />
+          <MainView search={this.props.search}>
             <Switch>
               <Route
                 exact
@@ -106,4 +107,15 @@ class AppComponent extends Component {
   }
 }
 
-export default withRouter(AppComponent);
+const mapStateToProps = state => {
+  return {
+    search: state.arxivReducer.search
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(AppComponent)
+);

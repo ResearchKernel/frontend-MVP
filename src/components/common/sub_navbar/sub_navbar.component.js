@@ -15,8 +15,8 @@ class SubNavbarComponent extends React.Component {
     });
   };
 
-  handleSubCategory = (e) => {
-    const payload = e.item.props.children;
+  handleSubCategory = e => {
+    const payload = e.item.props.code;
     this.props.fetchSubCategory(payload);
   };
 
@@ -28,22 +28,27 @@ class SubNavbarComponent extends React.Component {
         selectedKeys={[this.state.current]}
         mode="horizontal"
       >
-      {
-        category.map((item,key) => <MenuItem key={key}>{item.type}</MenuItem>)
-      }
+        {category.map((item, key) => (
+          <MenuItem key={key} code={item.code}>
+            {item.type}
+          </MenuItem>
+        ))}
       </SubNavMenu>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    subCategory: state.subCategory,
-  }
+    subCategory: state.subCategory
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubCategory: (payload) => dispatch(fetchSubCategory(payload)),
+  fetchSubCategory: payload => dispatch(fetchSubCategory(payload))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubNavbarComponent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SubNavbarComponent);
