@@ -13,6 +13,10 @@ class SubNavbarComponent extends React.Component {
     this.setState({
       current: e.key
     });
+    const firstCat = category.filter(
+      item => item.code === e.item.props.code
+    )[0]["sub"][0]["code"];
+    this.props.history.push(`/category/${firstCat}`);
   };
 
   handleSubCategory = e => {

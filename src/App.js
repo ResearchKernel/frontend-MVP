@@ -40,8 +40,8 @@ class AppComponent extends Component {
   render() {
     return (
       <App>
-        <Navbar />
-        <SubNavbar />
+        <Navbar {...this.props} />
+        <SubNavbar {...this.props} />
         <Content>
           <Sidebar {...this.props} />
           <MainView search={this.props.search}>

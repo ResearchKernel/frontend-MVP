@@ -16,38 +16,38 @@ class SiderComponent extends React.Component {
   };
 
   handleClick = e => {
+    this.props.history.push(`/category/${e.item.props.code}`);
     this.props.fetchArxivData(false, "cat", e.item.props.code, "0", "10");
     this.setState({ selectedKeys: e.item.props.index.toString() });
   };
 
   componentDidMount() {
-    this.updateHooks();
+    this.updateHooks(this.props.location.pathname);
   }
 
-  updateHooks = () => {
-    const loc = this.props.location.pathname;
+  updateHooks = loc => {
     if (loc === "/") {
-      this.props.history.push("/category/astro-ph");
+      this.props.history.push("/category/astro-ph.CO");
       this.setState({ selectedKeys: "0" });
       this.props.fetchArxivData(false, "cat", "astro-ph.CO", "0", "10");
       this.props.fetchSubCategory("astro-ph");
     } else {
-      const lastIndex = loc.lastIndexOf("/");
-      if (lastIndex !== -1) {
-        const catsub = loc.substr(lastIndex + 1);
-        const cat = catsub.split(".")[0];
-        const index = category
-          .filter(item => item.code === cat)[0]["sub"].findIndex(subitem => subitem.code === catsub);
-        this.setState({ selectedKeys: index.toString() });
-        this.props.fetchArxivData(false, "cat", catsub, "0", "10");
-        this.props.fetchSubCategory(catsub.split(".")[0]);
-      }
+      const categoryUrl = loc.split("/").pop();
+      const cat = categoryUrl.split(".")[0];
+      const fIndex = category.filter(item => item.code === cat);
+      const fSubIndex = fIndex[0]["sub"];
+      const index = fSubIndex.findIndex(
+        subitem => subitem.code === categoryUrl
+      );
+      this.setState({ selectedKeys: index.toString() });
+      this.props.fetchArxivData(false, "cat", categoryUrl, "0", "10");
+      this.props.fetchSubCategory(cat);
     }
   };
 
   componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
-      this.updateHooks();
+      this.updateHooks(nextProps.location.pathname);
     }
   }
 
