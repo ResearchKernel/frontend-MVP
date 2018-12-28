@@ -15,7 +15,7 @@ import Donate from "./views/donate/donate";
 import Category from "./views/category/category.component";
 
 const App = styled.div`
-  max-width: 1366px;
+  /* max-width: 1366px; */
   width: 100%;
   height: 100%;
   background-color: #fff;
