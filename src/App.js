@@ -38,13 +38,17 @@ const MainView = styled.div`
 
 class AppComponent extends Component {
   render() {
+    const links = ["community", "about-us", "contact-us", "donate"];
+    const hideSidebar = links.includes(
+      this.props.location.pathname.split("/").pop()
+    );
     return (
       <App>
         <Navbar {...this.props} />
         <SubNavbar {...this.props} />
         <Content>
           <Sidebar {...this.props} />
-          <MainView search={this.props.search}>
+          <MainView search={this.props.search && hideSidebar}>
             <Switch>
               <Route
                 exact

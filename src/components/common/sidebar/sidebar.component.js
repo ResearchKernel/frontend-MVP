@@ -22,7 +22,12 @@ class SiderComponent extends React.Component {
   };
 
   componentDidMount() {
-    this.updateHooks(this.props.location.pathname);
+    const links = ["community", "about-us", "contact-us", "donate"];
+    console.log(this.props.location.pathname.split("/").pop());
+    const TRUE = !links.includes(this.props.location.pathname.split("/").pop());
+    if (TRUE) {
+      this.updateHooks(this.props.location.pathname);
+    }
   }
 
   updateHooks = loc => {
@@ -46,13 +51,21 @@ class SiderComponent extends React.Component {
   };
 
   componentWillReceiveProps(nextProps, nextState) {
-    if (nextProps.location.pathname !== this.props.location.pathname) {
+    const links = ["community", "about-us", "contact-us", "donate"];
+    if (
+      nextProps.location.pathname !== this.props.location.pathname &&
+      !links.includes(nextProps.location.pathname.split("/").pop())
+    ) {
       this.updateHooks(nextProps.location.pathname);
     }
   }
 
   render() {
     const { defaultSelectedKey, selectedKeys } = this.state;
+    const links = ["community", "about-us", "contact-us", "donate"];
+    const hideSidebar = links.includes(
+      this.props.location.pathname.split("/").pop()
+    );
     return (
       <Sider
         breakpoint="lg"
@@ -60,7 +73,7 @@ class SiderComponent extends React.Component {
         style={{
           background: "#fff",
           overflow: "auto",
-          display: this.props.search ? "none" : "block"
+          display: this.props.search || hideSidebar ? "none" : "block"
         }}
         theme="dark"
         width={250}
