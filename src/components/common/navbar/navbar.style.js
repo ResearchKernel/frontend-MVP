@@ -39,6 +39,18 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const CustomLink = styled.a`
+  margin-right: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #666;
+  &:hover {
+    background-color: #fafafa;
+    color: #007bff;
+    text-decoration: none;
+  }
+`;
+
 export const NavbarImg = styled.img`
   width: 100px;
 `;
