@@ -5,7 +5,7 @@ export function fetchArxivData(search, prefix, query, start, maxResults) {
   return dispatch => {
     axios
       .get(
-        `https://export.arxiv.org/api/query?search_query=${prefix}:${query}&start=${start}&max_results=${maxResults}`
+        `https://export.arxiv.org/api/query?search_query=${prefix}:${query}&start=${start}&max_results=${maxResults}&sortBy=lastUpdatedDate`
       )
       .then(response => {
         var data = [];
