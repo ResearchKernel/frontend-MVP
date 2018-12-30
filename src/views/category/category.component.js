@@ -32,6 +32,10 @@ class CategoryComponent extends Component {
     );
   };
 
+  handlePageSizeChange = (current, pageSize) => {
+    this.handlePagination(current, pageSize);
+  };
+
   onClose = () => {
     this.setState({
       visible: false
@@ -107,6 +111,7 @@ class CategoryComponent extends Component {
             <Pagination
               showSizeChanger
               onChange={this.handlePagination}
+              onShowSizeChange={this.handlePageSizeChange}
               defaultCurrent={1}
               total={1000}
             />
