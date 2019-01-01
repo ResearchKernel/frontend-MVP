@@ -1,7 +1,7 @@
 export function arxivReducer(
   state = {
     processing: false,
-    data: null,
+    data: [],
     error: null,
     search: null,
     prevSearchedValue: ""

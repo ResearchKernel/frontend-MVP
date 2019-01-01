@@ -5,6 +5,7 @@ import { fetchGithubSearch } from "../../_actions/github.action";
 import { fetchArxivData } from "../../_actions/arxiv.action";
 import { Skeleton, List, Icon, Drawer, Pagination } from "antd";
 import GithubComponent from "../../components/common/github/github.component";
+import SkeletonComponent from "../../_assets/tempData";
 
 class CategoryComponent extends Component {
   state = {
@@ -61,34 +62,34 @@ class CategoryComponent extends Component {
               size="large"
               dataSource={this.props.arxivData.data}
               renderItem={(item, key) => (
-                <List.Item
-                  key={key}
-                  actions={
-                    !loading && [
-                      <span>
-                        {moment(item.published[0]).format("MMMM Do YYYY")}
-                      </span>,
-                      <span>
-                        <Icon type="file-pdf" style={{ marginRight: 8 }} />
-                        <a
-                          href={item.id[0].replace("abs", "pdf")}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          PDF
-                        </a>
-                      </span>,
-                      <span>
-                        <Icon
-                          onClick={() => this.handleGithub(item.title)}
-                          type="github"
-                          style={{ marginRight: 8 }}
-                        />
-                      </span>
-                    ]
-                  }
-                >
-                  <Skeleton loading={false} active avatar>
+                <Skeleton loading={this.props.processing} active>
+                  <List.Item
+                    key={key}
+                    actions={
+                      !loading && [
+                        <span>
+                          {moment(item.published[0]).format("MMMM Do YYYY")}
+                        </span>,
+                        <span>
+                          <Icon type="file-pdf" style={{ marginRight: 8 }} />
+                          <a
+                            href={item.id[0].replace("abs", "pdf")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            PDF
+                          </a>
+                        </span>,
+                        <span>
+                          <Icon
+                            onClick={() => this.handleGithub(item.title)}
+                            type="github"
+                            style={{ marginRight: 8 }}
+                          />
+                        </span>
+                      ]
+                    }
+                  >
                     <List.Item.Meta
                       title={
                         <a
@@ -104,8 +105,8 @@ class CategoryComponent extends Component {
                       })}
                     />
                     {item.summary}
-                  </Skeleton>
-                </List.Item>
+                  </List.Item>
+                </Skeleton>
               )}
             />
             <Pagination
@@ -118,7 +119,7 @@ class CategoryComponent extends Component {
             ,
           </div>
         ) : (
-          <Skeleton active paragraph={{ rows: 10 }} />
+          <SkeletonComponent />
         )}
         <Drawer
           width={640}
@@ -138,6 +139,7 @@ class CategoryComponent extends Component {
 const mapStateToProps = state => {
   return {
     arxivData: state.arxivReducer,
+    processing: state.arxivReducer.processing,
     search: state.arxivReducer.search,
     prevSearchedValue: state.arxivReducer.prevSearchedValue
   };

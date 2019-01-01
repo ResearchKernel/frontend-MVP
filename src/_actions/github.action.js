@@ -2,6 +2,9 @@ import axios from "axios";
 
 export function fetchGithubSearch(title) {
     return dispatch => {
+      dispatch({
+        type: "GITHUB_PENDING"
+      });
       axios.get(`https://api.github.com/search/repositories?q=${title}&sort=stars&order=desc`)
         .then(response => {
           dispatch({

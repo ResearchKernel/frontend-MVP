@@ -3,6 +3,9 @@ var XMLTojs = require("xml2js");
 
 export function fetchArxivData(search, prefix, query, start, maxResults) {
   return dispatch => {
+    dispatch({
+      type: "ARXIV_PENDING"
+    });
     axios
       .get(
         `https://export.arxiv.org/api/query?search_query=${prefix}:${query}&start=${start}&max_results=${maxResults}&sortBy=lastUpdatedDate`
